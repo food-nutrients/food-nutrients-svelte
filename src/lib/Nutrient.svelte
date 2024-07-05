@@ -16,15 +16,9 @@
 		amount /= 1000;
 		unit = 'mg';
 	}
+	$: percent = Math.round((amount / nutrient.rda) * 100);
 </script>
 
 <div>
-	<a href={nutrient.wiki} target="_blank">{nutrient.name}: {amount} {unit}</a>
-	<!-- {#each selectedFoods as food}
-		<p>
-			{food.food.name}:
-			{amount}
-			{unit}
-		</p>
-	{/each} -->
+	<a href={nutrient.wiki} target="_blank">{nutrient.name}: {amount} {unit} / {percent}%</a>
 </div>

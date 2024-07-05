@@ -6,23 +6,35 @@
 	export let onDelete: (food: Food) => void;
 </script>
 
-<ul>
-	{#each selectedFoods as food}
-		<li>
-			<div class="food-name">{food.food.name}</div>
-			<div class="food-props">
-				<input type="number" value={food.serving} min="0" step="1" />grams
-				<button
-					on:click={() => {
-						onDelete(food.food);
-					}}>x</button
-				>
-			</div>
-		</li>
-	{/each}
-</ul>
+<div>
+	{#if selectedFoods.length === 0}
+		<p>No foods selected</p>
+	{/if}
+	{#if selectedFoods.length > 0}
+		<p>Selected foods</p>
+	{/if}
+	<ul>
+		{#each selectedFoods as food}
+			<li>
+				<div class="food-name">{food.food.name}</div>
+				<div class="food-props">
+					<input type="number" value={food.serving} min="0" step="1" />grams
+					<button
+						on:click={() => {
+							onDelete(food.food);
+						}}>x</button
+					>
+				</div>
+			</li>
+		{/each}
+	</ul>
+</div>
 
 <style>
+	p {
+		text-align: center;
+		margin-top: 1rem;
+	}
 	ul {
 		list-style: none;
 		padding: 0;
